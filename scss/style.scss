@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+// Initial Setup
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// Variables
+
+$red: hsl(0, 78%, 62%);
+$cyan: hsl(180, 62%, 55%);
+$orange: hsl(34, 97%, 64%);
+$blue: hsl(212, 86%, 64%);
+
+$very-dark-blue: hsl(234, 12%, 34%);
+$grayish-blue: hsl(229, 6%, 66%);
+$very-light-gray: hsl(0, 0%, 98%);
+
+$margin-centered: 0 auto;
+
+// General Mixins and Classes
+
+@mixin flex-align($align,$justify) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+// Animations
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    19% {
+        transform: rotate(5deg);
+    }
+
+    37% {
+        transform: rotate(0deg);
+    }
+
+    56%{
+        transform: rotate(-5deg);
+    }
+
+    75%{
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+// Elements
+
+body {
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    background: $very-light-gray;
+}
+
+p {
+    color: $grayish-blue;
+}
+
+.title,
+h2 {
+    color: $very-dark-blue;
+}
+
+.attribution {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    a{
+        text-decoration: none;
+        color: $very-dark-blue;
+    }
+}
+
+.container {
+    padding-top: 80px;
+
+    .text {
+        max-width: 510px;
+        margin: $margin-centered;
+
+        p {
+            &.title {
+                font-size: 2.28rem;
+                font-weight: 200;
+                line-height: 1.45em;
+                margin-bottom: 0.42em;
+
+                span {
+                    font-weight: 600;
+                }
+            }
+
+            &.tiny {
+                font-size: 0.95rem;
+                line-height: 1.6em;
+            }
+        }
+    }
+}
+
+.card {
+    position: relative;
+    max-width: 350px;
+    min-height: 250px;
+    width: 100%;
+    $rad: 5px;
+    border-radius: $rad;
+    background-color: white;
+    overflow-x: hidden;
+    padding: 32px;
+    text-align: left;
+    box-shadow: 0px 10px 20px rgba(83, 120, 201, 0.2);
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.4em;
+    }
+
+    p {
+        font-size: 0.8rem;
+        line-height: 1.8em;
+    }
+
+    img {
+        margin-top: 2.5em;
+        float: right;
+        clear: right;
+
+        &:hover{
+            animation-delay:1s;
+            animation: wiggle 1s infinite;
+        }
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5px;
+        $pad: 2px;
+        background-color: $very-dark-blue;
+        padding: 0 $pad;
+        width: calc(100% - #{$pad * 2});
+
+        // Background only affect content
+        background-clip: content-box;
+
+        @each $side in ("left", "right") {
+            border-top-#{$side}-radius: $rad;
+        }
+    }
+
+    $colors: ($cyan, $red, $orange, $blue);
+
+    // Go through each color and change the line color to each element of class card._[number]
+    @for $i from 1 through 4 {
+        &._#{$i} {
+            &::before {
+                background-color: nth($colors, $i );
+            }
+        }
+    }
+
+    top: 0;
+    transition: top 0.3s;
+    &:hover{
+        top: -10px;
+    }
+}
+
+.cardBox{
+    max-width:1200px;
+    @include flex-align(center,center);
+    flex-wrap: wrap;
+    $gap: 30px;
+    gap:$gap;
+    margin: 0 auto;
+    margin-top: 60px;
+
+    .two-card{
+        display:flex;
+        flex-direction:column;
+        gap:$gap;
+    }
+}
+
+@media only screen and (max-width:1110px) {
+    .cardBox{
+
+        .two-card{
+            flex-direction:row;
+            flex-wrap:wrap;
+            @include flex-align(center,center)
+        }
+    }
+}
+
+@media only screen and (max-width: 450px){
+
+    .attribution{
+        margin-top:50px;
+        position: initial;
+        background-color: hsl(0, 0%, 20%); 
+        a{
+            color:white;
+        }
+
+    }
+    
+    .container .text p{
+        &.title{
+            font-size: 1.6rem;
+        }
+        &.tiny{
+            font-size: 0.8rem;
+        }
+    }
+
+    .cardBox{
+        $gap: 10px;
+        gap:$gap;
+        .two-card{
+            gap:$gap;
+        }
+    }
+}
