@@ -23,7 +23,7 @@ $margin-centered: 0 auto;
 
 // General Mixins and Classes
 
-@mixin flex-align($align,$justify) {
+@mixin flex-align($align, $justify) {
     display: flex;
     align-items: $align;
     justify-content: $justify;
@@ -44,11 +44,11 @@ $margin-centered: 0 auto;
         transform: rotate(0deg);
     }
 
-    56%{
+    56% {
         transform: rotate(-5deg);
     }
 
-    75%{
+    75% {
         transform: rotate(0deg);
     }
 
@@ -71,7 +71,7 @@ p {
     color: $grayish-blue;
 }
 
-.title,
+h1,
 h2 {
     color: $very-dark-blue;
 }
@@ -81,7 +81,7 @@ h2 {
     bottom: 0;
     width: 100%;
 
-    a{
+    a {
         text-decoration: none;
         color: $very-dark-blue;
     }
@@ -90,26 +90,24 @@ h2 {
 .container {
     padding-top: 80px;
 
-    .text {
+    header {
         max-width: 510px;
         margin: $margin-centered;
 
-        p {
-            &.title {
-                font-size: 2.28rem;
-                font-weight: 200;
-                line-height: 1.45em;
-                margin-bottom: 0.42em;
+        h1 {
+            font-size: 2.28rem;
+            font-weight: 200;
+            line-height: 1.45em;
+            margin-bottom: 0.42em;
 
-                span {
-                    font-weight: 600;
-                }
+            span {
+                font-weight: 600;
             }
+        }
 
-            &.tiny {
-                font-size: 0.95rem;
-                line-height: 1.6em;
-            }
+        p.tiny {
+            font-size: 0.95rem;
+            line-height: 1.6em;
         }
     }
 }
@@ -142,8 +140,8 @@ h2 {
         float: right;
         clear: right;
 
-        &:hover{
-            animation-delay:1s;
+        &:hover {
+            animation-delay: 1s;
             animation: wiggle 1s infinite;
         }
     }
@@ -174,71 +172,128 @@ h2 {
     @for $i from 1 through 4 {
         &._#{$i} {
             &::before {
-                background-color: nth($colors, $i );
+                background-color: nth($colors, $i);
             }
         }
     }
 
     top: 0;
     transition: top 0.3s;
-    &:hover{
+    &:hover {
         top: -10px;
     }
 }
 
-.cardBox{
-    max-width:1200px;
-    @include flex-align(center,center);
+.cardBox {
+    max-width: 1200px;
+    @include flex-align(center, center);
     flex-wrap: wrap;
     $gap: 30px;
-    gap:$gap;
+    gap: $gap;
     margin: 0 auto;
     margin-top: 60px;
 
-    .two-card{
-        display:flex;
-        flex-direction:column;
-        gap:$gap;
+    .two-card {
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
     }
 }
 
-@media only screen and (max-width:1110px) {
-    .cardBox{
-
-        .two-card{
-            flex-direction:row;
-            flex-wrap:wrap;
-            @include flex-align(center,center)
+@media only screen and (max-width: 1110px) {
+    .cardBox {
+        .two-card {
+            flex-direction: row;
+            flex-wrap: wrap;
+            @include flex-align(center, center);
         }
     }
 }
 
-@media only screen and (max-width: 450px){
-
-    .attribution{
-        margin-top:50px;
+@media only screen and (max-width: 450px) {
+    .attribution {
+        margin-top: 50px;
         position: initial;
-        background-color: hsl(0, 0%, 20%); 
-        a{
-            color:white;
-        }
-
-    }
-    
-    .container .text p{
-        &.title{
-            font-size: 1.6rem;
-        }
-        &.tiny{
-            font-size: 0.8rem;
+        background-color: hsl(0, 0%, 20%);
+        a {
+            $pad: 10%;
+            color: white;
         }
     }
 
-    .cardBox{
-        $gap: 10px;
-        gap:$gap;
-        .two-card{
-            gap:$gap;
+    .container {
+        padding: 10%;
+
+        header {
+            width: 100%;
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p.tiny {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .cardBox {
+        $gap: 30px;
+        gap: $gap;
+        margin-top: $gap;
+        .two-card {
+            gap: $gap;
+        }
+    }
+}
+
+@media only screen and (max-width: 250px) {
+    .card {
+
+        padding:16px;
+
+        img {
+            margin-top: 2em;
+            max-width: 50px;
+            width: 100%;
+        }
+    }
+
+    .container {
+        padding: 7%;
+
+        header {
+            width: 100%;
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            p.tiny {
+                font-size: 0.72rem;
+            }
+        }
+    }
+
+    .card{
+        text-align: center;
+        min-height: auto;
+
+        h2{
+            font-size: 1.1rem;
+            word-wrap: break-word;
+        }
+
+        p{
+            font-size: 0.7rem;
+        }
+
+        img{
+            display:block;
+            margin-left: auto;
+            margin-right:auto;
+            float: none;
+
         }
     }
 }

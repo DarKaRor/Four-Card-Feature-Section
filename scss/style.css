@@ -72,7 +72,7 @@ p {
   color: #a3a5ae;
 }
 
-.title,
+h1,
 h2 {
   color: #4c4e61;
 }
@@ -92,23 +92,23 @@ h2 {
   padding-top: 80px;
 }
 
-.container .text {
+.container header {
   max-width: 510px;
   margin: 0 auto;
 }
 
-.container .text p.title {
+.container header h1 {
   font-size: 2.28rem;
   font-weight: 200;
   line-height: 1.45em;
   margin-bottom: 0.42em;
 }
 
-.container .text p.title span {
+.container header h1 span {
   font-weight: 600;
 }
 
-.container .text p.tiny {
+.container header p.tiny {
   font-size: 0.95rem;
   line-height: 1.6em;
 }
@@ -246,17 +246,64 @@ h2 {
   .attribution a {
     color: white;
   }
-  .container .text p.title {
-    font-size: 1.6rem;
+  .container {
+    padding: 10%;
   }
-  .container .text p.tiny {
+  .container header {
+    width: 100%;
+  }
+  .container header h1 {
+    font-size: 1.5rem;
+  }
+  .container header p.tiny {
     font-size: 0.8rem;
   }
   .cardBox {
-    gap: 10px;
+    gap: 30px;
+    margin-top: 30px;
   }
   .cardBox .two-card {
-    gap: 10px;
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 250px) {
+  .card {
+    padding: 16px;
+  }
+  .card img {
+    margin-top: 2em;
+    max-width: 50px;
+    width: 100%;
+  }
+  .container {
+    padding: 7%;
+  }
+  .container header {
+    width: 100%;
+  }
+  .container header h1 {
+    font-size: 1.2rem;
+  }
+  .container header p.tiny {
+    font-size: 0.72rem;
+  }
+  .card {
+    text-align: center;
+    min-height: auto;
+  }
+  .card h2 {
+    font-size: 1.1rem;
+    word-wrap: break-word;
+  }
+  .card p {
+    font-size: 0.7rem;
+  }
+  .card img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
   }
 }
 /*# sourceMappingURL=style.css.map */
